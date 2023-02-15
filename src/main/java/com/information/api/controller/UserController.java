@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -19,8 +21,10 @@ public class UserController {
     }
 
     @PostMapping("save")
-    public User saveUser(@RequestBody User user){
-        return service.saveUser(user);
+    public String saveUser(@RequestBody User user){
+        user.setDate(LocalDateTime.now());
+        service.saveUser(user);
+        return String.valueOf(user.getId());
     }
 
     public User getUserId(@PathVariable Long id){

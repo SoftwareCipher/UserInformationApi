@@ -28,4 +28,5 @@ public class User {
     private boolean status;
     @Column(name = "date")
     private LocalDateTime date;
+
 }

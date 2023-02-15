@@ -19,9 +19,9 @@ public class Service implements ImplService {
     }
 
     @Override
-    public User saveUser(User user) {
+    public void saveUser(User user) {
         user.setDate(LocalDateTime.now());
-        return useRepository.saveAndFlush(user);
+        useRepository.saveAndFlush(user).getId();
     }
 
     @Override
