@@ -40,7 +40,12 @@ public class UserController {
     }
 
 
-    public Status setStatusUser(@PathVariable Long id, @PathVariable String status){
-        return service.setStatusUser(id, status);
+    public List<User> setStatusUser(@PathVariable Long id){
+        return null;
+    }
+
+    @GetMapping("/status/{status}")
+    public List<User> getUsersStatus(@PathVariable boolean status) {
+        return service.setStatusUser(status);
     }
 }

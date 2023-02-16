@@ -8,7 +8,7 @@ import java.util.List;
 public interface ImplService {
     Long saveUser(User user);
     User getUserId(Long id);
-    Status setStatusUser(Long id, String status);
+    List<User> setStatusUser(boolean status);
 
     List<User> allUsers();
 }
