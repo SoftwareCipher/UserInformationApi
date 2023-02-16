@@ -21,10 +21,11 @@ public class UserController {
     }
 
     @PostMapping("save")
-    public String saveUser(@RequestBody User user){
+    @ResponseBody
+    public Long saveUser(@RequestBody User user){
         user.setDate(LocalDateTime.now());
         service.saveUser(user);
-        return String.valueOf(user.getId());
+        return user.getId();
     }
 
     public User getUserId(@PathVariable Long id){
