@@ -8,8 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -20,7 +21,7 @@ public class UserController {
         this.service = service;
     }
 
-    @PostMapping("save")
+    @PostMapping("/save")
     @ResponseBody
     public Long saveUser(@RequestBody User user){
         user.setDate(LocalDateTime.now());
@@ -28,9 +29,16 @@ public class UserController {
         return user.getId();
     }
 
-    public User getUserId(@PathVariable Long id){
+    @GetMapping("/{id}")
+    public User getUserId(@PathVariable Long id) {
         return service.getUserId(id);
     }
+
+    @GetMapping("/allUsers")
+    public List<User> allUsers(){
+        return service.allUsers();
+    }
+
 
     public Status setStatusUser(@PathVariable Long id, @PathVariable String status){
         return service.setStatusUser(id, status);

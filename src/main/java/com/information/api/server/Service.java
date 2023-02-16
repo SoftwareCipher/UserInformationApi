@@ -7,6 +7,7 @@ import com.information.api.server.impl.ImplService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @org.springframework.stereotype.Service
 public class Service implements ImplService {
@@ -26,11 +27,16 @@ public class Service implements ImplService {
 
     @Override
     public User getUserId(Long id) {
-        return null;
+        return useRepository.findById(id).get();
     }
 
     @Override
     public Status setStatusUser(Long id, String status) {
         return null;
+    }
+
+    @Override
+    public List<User> allUsers() {
+        return useRepository.findAll();
     }
 }
