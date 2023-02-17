@@ -4,7 +4,6 @@ import com.information.api.entity.Status;
 import com.information.api.entity.User;
 import com.information.api.server.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -40,12 +39,13 @@ public class UserController {
     }
 
 
-    public List<User> setStatusUser(@PathVariable Long id){
-        return null;
+    @PostMapping("/setStatus/{id}/{status}")
+    public Status setNewStatus(@PathVariable Long id, @PathVariable boolean status){
+        return service.setNewStatus(id, status);
     }
 
     @GetMapping("/status/{status}")
     public List<User> getUsersStatus(@PathVariable boolean status) {
-        return service.setStatusUser(status);
+        return service.getStatusUser(status);
     }
 }

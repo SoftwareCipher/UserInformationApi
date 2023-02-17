@@ -1,5 +1,6 @@
 package com.information.api.server;
 
+import com.information.api.entity.Status;
 import com.information.api.entity.User;
 import com.information.api.repository.UseRepository;
 import com.information.api.server.impl.ImplService;
@@ -29,9 +30,20 @@ public class Service implements ImplService {
         return useRepository.findById(id).get();
     }
 
+
+
     @Override
-    public List<User> setStatusUser(boolean status) {
+    public List<User> getStatusUser(boolean status) {
         return useRepository.findUserIdAndStatus(status);
+    }
+
+    @Override
+    public Status setNewStatus(Long id, boolean oldStatus) {
+        boolean newStatus;
+        newStatus = !oldStatus;
+        Status status = new Status(id, oldStatus, newStatus);
+        useRepository.updateStatus(id, oldStatus);
+        return status;
     }
 
     @Override
